@@ -25,11 +25,10 @@ class Scraper
     student = []
     socials = profile.css("div.social-icon-container").css("a")
     twitter = socials.attr("href").value
-    socials.each do |social|
+    socials.each do |social| #why does this loop only run once? socials.length == 4 and 2 on the tests
       binding.pry
       social.attr("href").value
     end
-    # binding.pry
     linkedin = socials.
     github = socials.
     blog = socials.
