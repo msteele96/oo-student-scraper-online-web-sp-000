@@ -7,7 +7,7 @@ class Student
   def initialize(student_hash)
     binding.pry
     @name = student_hash[:name]
-    @location = student_hash[:location]  
+    @location = student_hash[:location]
     @twitter = student_hash[:twitter]
     @linkedin = student_hash[:linkedin]
     @github = student_hash[:github]
@@ -15,7 +15,6 @@ class Student
     @profile_quote = student_hash[:profile_quote]
     @bio = student_hash[:bio]
     @profile_url = student_hash[:profile_url]
-
     @@all << self
   end
 
