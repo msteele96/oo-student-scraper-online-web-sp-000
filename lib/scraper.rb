@@ -22,20 +22,32 @@ class Scraper
   def self.scrape_profile_page(profile_url)
     html = open(profile_url)
     profile = Nokogiri::HTML(html)
-    student = []
-    socials = profile.css("div.social-icon-container").css("a")
-    twitter = socials.attr("href").value
-    socials.each do |social| #why does this loop only run once? socials.length == 4 and 2 on the tests
-      binding.pry
-      social.attr("href").value
+    student = {}
+    socials = profile.css("div.social-icon-container").children.css("a")
+    socials.each do |social|
+      if social.attr("href").include?("twitter")
+        student[:twitter] = social.attr("href")
+      elsif social.attr("href").include?("linkedin")
+        student[:linkedin] = social.attr("href")
+      elsif social.attr("href").include?("github")
+        student[:github] = social.attr("href")
+      else
+        student[:blog] = social.attr("href")
+      end
+      # case social.attr("href")
+      # when include?("twitter")
+      #   twitter = social.attr("href")
+      # when include?("github")
+      #   github = social.attr("href")
+      # when include?("linkedin")
+      #   linkedin = social.attr("href")
+      # else
+      #   blog = social.attr("href")
+      # end
     end
-    linkedin = socials.
-    github = socials.
-    blog = socials.
-    profile_quote = profile.css("div.profile-quote").text
-    bio = profile.css("p").text
-    student << {twitter: twitter, linkedin: linkedin, github: github, blog: blog, profile_quote: profile_quote, bio: bio}
-
+    student[:profile_quote] = profile.css("div.profile-quote").text
+    student[:bio] = profile.css("p").text
+    student
   end
 
 end
