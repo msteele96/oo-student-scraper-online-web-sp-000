@@ -34,16 +34,6 @@ class Scraper
       else
         student[:blog] = social.attr("href")
       end
-      # case social.attr("href")
-      # when include?("twitter")
-      #   twitter = social.attr("href")
-      # when include?("github")
-      #   github = social.attr("href")
-      # when include?("linkedin")
-      #   linkedin = social.attr("href")
-      # else
-      #   blog = social.attr("href")
-      # end
     end
     student[:profile_quote] = profile.css("div.profile-quote").text
     student[:bio] = profile.css("p").text
